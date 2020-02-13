@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  pickdate: 2020-02-13
+  returndate: 2020-02-13
+  house: one
+  user: one
+
+two:
+  pickdate: 2020-02-13
+  returndate: 2020-02-13
+  house: two
+  user: two
