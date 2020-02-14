@@ -19,11 +19,9 @@ ActiveRecord::Schema.define(version: 2020_02_13_101528) do
     t.string "area"
     t.integer "pincode"
     t.integer "house_id"
-    t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["house_id"], name: "index_addresses_on_house_id"
-    t.index ["user_id"], name: "index_addresses_on_user_id"
   end
 
   create_table "comments", force: :cascade do |t|
@@ -38,13 +36,15 @@ ActiveRecord::Schema.define(version: 2020_02_13_101528) do
 
   create_table "houses", force: :cascade do |t|
     t.string "category"
-    t.string "type"
+    t.string "house_type"
     t.string "square_feet"
     t.decimal "amount"
     t.boolean "reserved", default: false
     t.boolean "approved", default: false
+    t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_houses_on_user_id"
   end
 
   create_table "reservations", force: :cascade do |t|
@@ -95,9 +95,9 @@ ActiveRecord::Schema.define(version: 2020_02_13_101528) do
   end
 
   add_foreign_key "addresses", "houses"
-  add_foreign_key "addresses", "users"
   add_foreign_key "comments", "houses"
   add_foreign_key "comments", "users"
+  add_foreign_key "houses", "users"
   add_foreign_key "reservations", "houses"
   add_foreign_key "reservations", "users"
 end

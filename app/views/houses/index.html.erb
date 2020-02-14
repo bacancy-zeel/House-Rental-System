@@ -1,0 +1,19 @@
+<h3> House Rental System </h3>
+
+<!--<%if current_user%>
+    <%= link_to 'sign out', destroy_user_session_path, method: :delete %>
+
+<%else%>
+    <%= link_to 'sign in', new_user_session_path %>
+<%end%>-->
+
+<%= link_to 'Post House', posts_path %>
+
+<%= form_with model: @house, method: :get, local: true do |f| %>
+<div>
+    <%= f.label :City %>
+    
+</div>
+<% end %>
+
+
