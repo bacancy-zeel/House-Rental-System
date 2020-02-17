@@ -5,6 +5,7 @@ class HousesController < ApplicationController
 
     def index
         @houses = House.all
+        
     end
 
     def show
@@ -25,6 +26,12 @@ class HousesController < ApplicationController
 
     def destroy
     end
+
+  def cities
+    @cities = CS.cities(states)
+  end
+
+
     private
     # Use callbacks to share common setup or constraints between actions.
     def set_house
@@ -37,7 +44,8 @@ class HousesController < ApplicationController
     end
 
     def select_city
-      # @city = CS.states(:in)
+      @states = CS.states(:in)
+     
     end
 
 end
