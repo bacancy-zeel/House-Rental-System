@@ -1,19 +1,28 @@
-<h3> House Rental System </h3>
 
-<!--<%if current_user%>
-    <%= link_to 'sign out', destroy_user_session_path, method: :delete %>
-
-<%else%>
-    <%= link_to 'sign in', new_user_session_path %>
-<%end%>-->
-
-<%= link_to 'Post House', posts_path %>
-
-<%= form_with model: @house, method: :get, local: true do |f| %>
-<div>
-    <%= f.label :City %>
-    
-</div>
+<%if current_user%>
+    <%= link_to 'Post House', posts_path %>
+<% else %>
+    <%= link_to 'Post House', user_session_path %>
 <% end %>
+<br>
+<div>
+    <%= form_with model: @house, method: :get, local: true do |f| %>
+ <div class="field">
+  <!-- Country -->
+  <%= f.label :state %>
+  <%= f.select :state, options_for_select(CS.states(:in).map { |c| [c[1], c[0]] } ) %>
+</div>
+
+<div class="field">
+  <!-- State -->
+  <%= f.label :city %>
+  <%= f.select :city, options_for_select([]) %>
+</div>
+
+
+    
+    <% end %>
+</div>
+
 
 
