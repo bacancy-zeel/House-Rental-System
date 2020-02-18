@@ -1,7 +1,5 @@
 class HousesController < ApplicationController
 
-    before_action :set_house, only: [:show, :edit, :update, :destroy]
-    before_action :select_city, only: [:index]
 
     def index
         @houses = House.all
@@ -27,25 +25,14 @@ class HousesController < ApplicationController
     def destroy
     end
 
-  def cities
-    @cities = CS.cities(states)
-  end
 
 
     private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_house
-      @house = House.find(params[:id])
-    end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def house_params
-      params.require(:house).permit(:name, :published_date, :author_id)
+      params.require(:house).permit(:category, :house_type, :square_feet, :amount, :reserved, :approved, :user_id)
     end
 
-    def select_city
-      @states = CS.states(:in)
-     
-    end
 
 end
