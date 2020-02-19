@@ -1,30 +1,35 @@
+<%= link_to 'Post House', new_house_path %>
 
-<%if current_user%>
-    <%= link_to 'Post House', new_post_path %>
-<% else %>
-    <%= link_to 'Post House', user_session_path %>
-<% end %>
 
-<br>
-<br>
-<div>
-    <%= form_with model: @house, method: :get, local: true do |f| %>
-        <div class="field">
-        <!-- Country -->
-        <%= f.label :state %>
-        <%= f.select :state, options_for_select(CS.states(:in).map { |c| [c[1], c[0]] } ) %>
-        </div>
+<h3>Houses Posted by <%= current_user.first_name %> <%= current_user.last_name %></h3>
 
-        <br>
 
-        <div class="field">
-        <!-- State -->
-        <%= f.label :city %>
-        <%= f.select :city, options_for_select(CS.cities(:AN) ) %>
-        </div>
+<table border="1">
+  <thead>
+    <tr>
+      <th>House Type</th>
+      <th>Category</th>
+      <th>Square Feet</th>
+      <th>Amount</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @house.each do |house| %>
+      <tr>
+        <td><%= house.house_type %></td>
+        <td><%= house.category %></td>
+        <td><%= house.square_feet %></td>
+        <td><%= house.amount %></td>
+        <td><%= link_to 'Edit', edit_house_path(house) %></td>
+        <td><%= link_to 'Destroy', house, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
     <% end %>
-</div>
+  </tbody>
+</table>
 
+<br>
+<%= link_to 'Back', root_path %>
 
 
 
