@@ -1,8 +1,30 @@
+
+<%if current_user%>
+    <%= link_to 'Post House', houses_path %>
+<% else %>
+    <%= link_to 'Post House', user_session_path %>
+<% end %>
+
+<br>
+<br>
 <div>
-<h3> House Rental System </h3>
+    <%= form_with model: @house, method: :get, local: true do |f| %>
+        <div class="field">
+        <!-- Country -->
+        <%= f.label :state %>
+        <%= f.select :state, options_for_select(CS.states(:in).map { |c| [c[1], c[0]] } ) %>
+        </div>
 
+        <br>
 
-
-
+        <div class="field">
+        <!-- State -->
+        <%= f.label :city %>
+        <%= f.select :city, options_for_select(CS.cities(:AN) ) %>
+        </div>
+    <% end %>
 </div>
+
+
+
 

@@ -1,8 +1,9 @@
 class UsersController < ApplicationController
   def home
-    
-      redirect_to houses_path
-    
   end
 
+  def index
+    @cities = CS.cities(params[:state])
+    @houses = House.where(city: params[:city])
+  end
 end

@@ -2,7 +2,7 @@ class HousesController < ApplicationController
 
 
     def index
-        @houses = House.all
+        @house = House.where(user_id: current_user.id)
         
     end
 
@@ -17,6 +17,20 @@ class HousesController < ApplicationController
     end
 
     def create
+      @house = House.new(house_params)
+      @house.user = current_user
+      respond_to do |format|
+
+          if @house.save
+
+             format.html { redirect_to address_new_path(@house)}
+
+          else
+              
+              format.html { render :new }
+          end
+
+      end
     end
 
     def update
@@ -28,6 +42,11 @@ class HousesController < ApplicationController
 
 
     private
+
+    def set_house
+        
+    end
+   
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def house_params

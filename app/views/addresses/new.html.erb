@@ -1,0 +1,22 @@
+
+<%= form_with(model: @address, local: true) do |form| %> 
+
+    <%= form.label :Address %>
+    <%= form.text_field :address %><br><br>
+
+    <%= form.label :State %>
+    <%= form.select :state, options_for_select(CS.states(:in).map { |c| [c[1], c[0]] } ) %><br><br>
+
+    <%= form.label :city %>
+    <%= form.select :city, options_for_select(CS.cities(:AN) ) %><br><br>
+
+    <%= form.label :Area %>
+    <%= form.text_field :area %><br><br>
+
+    <%= form.label :Pincode %>
+    <%= form.text_field :pincode %><br><br>
+
+    <%= form.submit :Submit %>
+
+<% end %>         
+<br>

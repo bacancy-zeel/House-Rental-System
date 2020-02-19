@@ -3,11 +3,6 @@ var city = document.getElementById("city");
 // Clear any populated options in the select box
 while (city.firstChild) city.removeChild(city.firstChild);
 
-// Add a placeholder
-var placeholder = document.createElement("option");
-placeholder.text = "Choose a city";
-placeholder.value = "";
-state.appendChild(placeholder);
 
 // Use erb templating to add the states
 <% @cities.each do |s| %>
