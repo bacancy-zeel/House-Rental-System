@@ -8,7 +8,7 @@ document.addEventListener("turbolinks:load", function(){
 
   city.addEventListener("change", function(){
     $.ajax({
-      url: "/get_house?city=" + city,
+      url: "/users?city=" + city,
       type: "GET"
     })
   })

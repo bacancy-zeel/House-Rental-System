@@ -2,6 +2,7 @@ class House < ApplicationRecord
     
     has_many :comments
     has_many :reservations
+    has_one :address
     belongs_to :user
     has_many_attached :images
 

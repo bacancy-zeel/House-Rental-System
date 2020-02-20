@@ -1,14 +1,5 @@
-
-<%if current_user%>
-    <%= link_to 'Post House', houses_path %>
-<% else %>
-    <%= link_to 'Post House', user_session_path %>
-<% end %>
-
-<br>
-<br>
 <div>
-    <%= form_with model: @house, method: :get, local: true do |f| %>
+    <%= form_with model: @house, method: :get do |f| %>
         <div class="field">
         <!-- Country -->
         <%= f.label :state %>
@@ -20,9 +11,10 @@
         <div class="field">
         <!-- State -->
         <%= f.label :city %>
-        <%= f.select :city, options_for_select(CS.cities(:AN) ) %>
+        <%= f.select :city, options_for_select([CS.cities(:AN)] ) %>
         </div>
     <% end %>
+    
 </div>
 
 
