@@ -1,5 +1,6 @@
 class HousesController < ApplicationController
-
+    before_action :set_house, only: [:show, :edit, :update, :destroy]
+    before_action :authenticate_user!
 
     def index
         @house = House.where(user_id: current_user.id)
@@ -23,7 +24,7 @@ class HousesController < ApplicationController
 
           if @house.save
 
-             format.html { redirect_to address_new_path(@house)}
+             format.html { redirect_to new_address_path(@house)}
 
           else
               
@@ -34,9 +35,23 @@ class HousesController < ApplicationController
     end
 
     def update
+        respond_to do |format|
+            if @house.update(house_params)
+
+                format.html { redirect_to @house, notice: 'House Profile was successfully updated.' }
+            else
+                format.html { render :edit }
+            end
+
+        end
     end
 
     def destroy
+        @house.destroy
+        respond_to do |format|
+        format.html { redirect_to houses_url, notice: 'House was successfully destroyed.' }
+        format.json { head :no_content }
+    end
     end
 
 
@@ -44,7 +59,7 @@ class HousesController < ApplicationController
     private
 
     def set_house
-        
+        @house = House.find(params[:id])
     end
    
 

@@ -1,5 +1,5 @@
 
-<%= form_with(model: @address, local: true) do |form| %> 
+<%= form_with(model: @address,url: create_address_path(params[:id]),method: :post, local: true) do |form| %> 
 
     <%= form.label :Address %>
     <%= form.text_field :address %><br><br>
