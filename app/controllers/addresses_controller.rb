@@ -16,8 +16,10 @@ class AddressesController < ApplicationController
 
     def create
       @address = Address.new(address_params)
-      @address.house_id = @house.id
-      byebug
+      @address.house_id = params[:id].to_i
+      if !current_user.has_role? :landlord
+        current_user.add_role :landlord
+      end
       respond_to do |format|
           
           if @address.save
@@ -43,6 +45,6 @@ class AddressesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def address_params
-      params.require(:address).permit(:address, :state, :city, :area, :pincode)
+      params.require(:address).permit(:address, :state, :city, :area, :pincode, :house_id)
     end
 end

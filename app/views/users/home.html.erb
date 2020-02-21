@@ -1,20 +1,47 @@
-<div>
+<div class="search">
     <%= form_with model: @house, method: :get do |f| %>
         <div class="field">
         <!-- Country -->
         <%= f.label :state %>
-        <%= f.select :state, options_for_select(CS.states(:in).map { |c| [c[1], c[0]] } ) %>
-        </div>
-
-        <br>
-
-        <div class="field">
+        <%= f.select :state, options_for_select(CS.states(:in).map { |c| [c[1], c[0]] } ),{:prompt => 'Select State'} %>
+        
+    
         <!-- State -->
         <%= f.label :city %>
-        <%= f.select :city, options_for_select([CS.cities(:AN)] ) %>
+        <%= f.select :city, options_for_select([CS.cities(:AN)] ),{:prompt => 'Select City'} %>
         </div>
     <% end %>
     
+</div>
+<div class="houses">
+    <h3>Houses</h3>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Category</th>
+      <th>Square feet</th>
+      <th>Amount</th>
+      <th>View Details</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @houses.each do |house| %>
+      <tr>
+        <td><%= house.house_type %></td>
+        <td><%= house.category %></td>
+        <td><%= house.square_feet %></td>
+        <td><%= house.amount %></td>
+        <td><%= link_to 'View Details', show_user_path(house) %></td>
+    
+        <% end %>
+      </tr>
+   
+  </tbody>
+</table>
+
 </div>
 
 

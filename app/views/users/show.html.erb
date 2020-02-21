@@ -1,0 +1,52 @@
+
+<div style = "width:400px; height:auto">
+    
+      <% (0...@house.images.count).each do |image| %>
+        <%= image_tag(@house.images[image], style:"width:100%") if @house.images.attached?%>
+      <% end %>
+</div>
+
+<p>
+  <strong>Address :</strong>
+  <%= @address.address %>
+</p>
+
+<p>
+  <strong>State:</strong>
+  <%= CS.states(:in)[@address.state.to_sym] %>
+</p>
+
+<p>
+  <strong>City:</strong>
+  <%= @address.city %>
+</p>
+
+<p>
+  <strong>Area:</strong>
+  <%= @address.area %>
+</p>
+
+
+
+<p>
+  <strong>House Type:</strong>
+  <%= @house.house_type %>
+</p>
+
+<p>
+  <strong>Category:</strong>
+  <%= @house.category %>
+</p>
+
+<p>
+  <strong>Square Feet:</strong>
+  <%= @house.square_feet %>
+</p>
+
+<p>
+  <strong>Amount:</strong>
+  <%= @house.amount %>
+</p>
+
+<%= link_to 'Back', root_path %>
+
