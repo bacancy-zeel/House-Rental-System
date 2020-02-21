@@ -2,15 +2,14 @@
 
 document.addEventListener("turbolinks:load", function(){
   
-  var city = document.getElementById("city");
-
+  $("#city").on("change", function() {     
+      $.ajax({
+        url: "/cities?city=" + city.value,
+        type: "GET"
+      })
+  });
   
 
-  city.addEventListener("change", function(){
-    $.ajax({
-      url: "/users?city=" + city,
-      type: "GET"
-    })
-  })
-
 })
+
+  

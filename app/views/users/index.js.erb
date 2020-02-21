@@ -1,11 +1,14 @@
 
-var placeholder = document.createElement("option");
-      placeholder.text = "Choose a city";
-      placeholder.value = "";
-      state.appendChild(placeholder);
+
 <% @cities.each do |c| %>
   city.options[city.options.length] = new Option('<%= c %>', '<%= c %>')
 <% end %>
 
+<% @address_cities.each do |c| %>
+  address_city.options[address_city.options.length] = new Option('<%= c %>', '<%= c %>')
+<% end %>
 
+<% @houses.each do |c| %>
+ <%= c.city %>
+<% end %>
 
