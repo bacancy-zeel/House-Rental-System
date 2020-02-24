@@ -34,7 +34,7 @@ ActiveRecord::Schema.define(version: 2020_02_18_085418) do
   end
 
   create_table "addresses", force: :cascade do |t|
-    t.text "address"
+    t.text "house_address"
     t.string "state"
     t.string "city"
     t.string "area"

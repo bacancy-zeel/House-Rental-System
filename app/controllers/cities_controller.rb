@@ -1,6 +1,7 @@
 class CitiesController < ApplicationController
     def index
-        @houses = Address.where(city: params[:city])
-        
+        @houses = House.joins(:address,:user).select('houses.*,addresses.*,users.*')
+       
+      
       end
 end

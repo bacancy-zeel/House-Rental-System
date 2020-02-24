@@ -1,10 +1,10 @@
-
-<div style = "width:400px; height:auto">
+<div style = "width:400px; height:400px;display: flex; flex-direction: row;">
     
       <% (0...@house.images.count).each do |image| %>
         <%= image_tag(@house.images[image], style:"width:100%") if @house.images.attached?%>
       <% end %>
 </div>
+
 
 <p>
   <strong>Address :</strong>
@@ -48,5 +48,8 @@
   <%= @house.amount %>
 </p>
 
+<%= link_to 'Contact House Owner', root_path %>
+<br>
 <%= link_to 'Back', root_path %>
+
 

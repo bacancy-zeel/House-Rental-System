@@ -5,7 +5,7 @@ document.addEventListener("turbolinks:load", function(){
     var address_state = document.getElementById("address_state");
     var address_city = document.getElementById("address_city");
     
-  
+
     $("#state").on("change", function() {
       while (city.firstChild) city.removeChild(city.firstChild);
         var placeholder = document.createElement("option");
@@ -30,12 +30,13 @@ document.addEventListener("turbolinks:load", function(){
           })
     });
 
-    $("#city").on("change", function() {     
+    $("#city").on("change", function() {  
+        
       $.ajax({
         url: "/cities?city=" + city.value,
         type: "GET"
       })
   });
       
-     
+   
 })
