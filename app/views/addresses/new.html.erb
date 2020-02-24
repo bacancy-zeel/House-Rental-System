@@ -2,7 +2,7 @@
 <%= form_with(model: @address,url: create_address_path(params[:id]),method: :post, local: true) do |form| %> 
 
     <%= form.label :Address %>
-    <%= form.text_field :address %><br><br>
+    <%= form.text_field :house_address %><br><br>
 
     <%= form.label :State %>
     <%= form.select :state, options_for_select(CS.states(:in).map { |c| [c[1], c[0]] } ),{:prompt => 'Select State'} %><br><br>

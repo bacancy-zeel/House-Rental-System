@@ -1,4 +1,8 @@
 
 <% @houses.each do |house| %>
-    <%= house.city %>
+
+   var option2='<tr><td><%=house.house_address%></td><td><%=house.category%></td><td><%=house.square_feet%></td><td><%=house.first_name%></td></tr>';
+   
+   $("#houses").append(option2);
 <% end %>
+

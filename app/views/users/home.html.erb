@@ -13,7 +13,7 @@
     <% end %>
     
 </div>
-<div class="houses">
+
     <h3>Houses</h3>
 
 <table class="table">
@@ -28,6 +28,7 @@
   </thead>
 
   <tbody>
+  <div class="houses" id="houses">
     <% @houses.each do |house| %>
       <tr>
         <td><%= house.house_type %></td>
@@ -36,14 +37,13 @@
         <td><%= house.amount %></td>
         <td><%= link_to 'View Details', show_user_path(house) %></td>
     
-        <% end %>
       </tr>
-   
+       <% end %>
+
+   </div>
+    
   </tbody>
 </table>
-
-</div>
-
 
 
 
