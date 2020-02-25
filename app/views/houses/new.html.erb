@@ -5,7 +5,7 @@
     <%= form.select :house_type, options_for_select([['Apartments'],['Villa/House'],['Flats'],['Row House'],['Farm House']]) %><br><br>
 
     <%= form.label :Category %>
-    <%= form.select :category, options_for_select([['1-BHK'],['2-BHK'],['3-BHK'],['4-BHK']]) %><br><br>
+    <%= form.select :category, options_for_select(House::Categories) %><br><br>
 
     <%= form.label :Square_Feet %>
     <%= form.text_field :square_feet %><br><br>

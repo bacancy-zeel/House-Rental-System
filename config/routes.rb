@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   # resources :addresses
   resources :users, only: :index
   resources :cities, only: :index
+  get "users/search" => "users#search", as: :search
   get "users/show/:id" => "users#show", as: :show_user
   get "/addresses/new/:id" => "addresses#new", as: :new_address
   post "/addresses/create/:id" => "addresses#create", as: :create_address

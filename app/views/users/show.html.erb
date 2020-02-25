@@ -1,55 +1,90 @@
+<div class="display">
 <div style = "width:400px; height:400px;display: flex; flex-direction: row;">
     
       <% (0...@house.images.count).each do |image| %>
         <%= image_tag(@house.images[image], style:"width:100%") if @house.images.attached?%>
       <% end %>
 </div>
-
-
+<div class="info">
 <p>
-  <strong>Address :</strong>
-  <%= @address.address %>
-</p>
-
-<p>
-  <strong>State:</strong>
-  <%= CS.states(:in)[@address.state.to_sym] %>
-</p>
-
-<p>
-  <strong>City:</strong>
-  <%= @address.city %>
-</p>
-
-<p>
-  <strong>Area:</strong>
-  <%= @address.area %>
-</p>
-
-
 
 <p>
   <strong>House Type:</strong>
-  <%= @house.house_type %>
+  <%= @houses.house_type %>
 </p>
 
 <p>
   <strong>Category:</strong>
-  <%= @house.category %>
+  <%= @houses.category %>
 </p>
+
 
 <p>
   <strong>Square Feet:</strong>
-  <%= @house.square_feet %>
+  <%= @houses.square_feet %>
 </p>
 
 <p>
   <strong>Amount:</strong>
-  <%= @house.amount %>
+  <%= @houses.amount %>
 </p>
 
-<%= link_to 'Contact House Owner', root_path %>
+<p>
+  <strong>Address :</strong>
+  <%= @houses.house_address %>
+</p>
+
+<p>
+  <strong>State:</strong>
+  <%= CS.states(:in)[@houses.state.to_sym] %>
+</p>
+
+<p>
+  <strong>City:</strong>
+  <%= @houses.city %>
+</p>
+
+<p>
+  <strong>Area:</strong>
+  <%= @houses.area %>
+</p>
+
+
+<a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+    Contact House Owner
+  </a>
+
+</div>
+</div>
 <br>
+
+
+
+
+<div class="collapse" id="collapseExample">
+  <div class="card card-body">
+    <h4><b>House Owner</b></h4>
+
+<p>
+  <strong>Name:</strong>
+  <%= @houses.first_name %> <%= @houses.last_name %>
+</p>
+
+<p>
+  <strong>Email id:</strong>
+  <%= @houses.email %> 
+</p>
+
+<p>
+  <strong>Contact No:</strong>
+  <%= @houses.contact %> 
+</p>
+
+  </div>
+</div>
+
+<br><br>
 <%= link_to 'Back', root_path %>
+
 
 

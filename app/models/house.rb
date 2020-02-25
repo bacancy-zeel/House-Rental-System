@@ -6,4 +6,5 @@ class House < ApplicationRecord
     belongs_to :user
     has_many_attached :images
 
+    Categories = ['1-BHK','2-BHK','3-BHK','4-BHK']
 end
