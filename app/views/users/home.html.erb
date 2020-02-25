@@ -3,8 +3,9 @@
         <div class="field">
         <!-- Country -->
         <%= f.label :state %>
-        <%= f.select :state, options_for_select(CS.states(:in).map { |c| [c[1], c[0]] } ),{:prompt => 'Select State'} %>
         
+        <%= f.select :state, options_for_select(CS.states(:in).map { |c| [c[1], c[0]] } ),{:prompt => 'Select State'} %>
+      
     
         <!-- State -->
         <%= f.label :city %>
@@ -15,7 +16,7 @@
 </div>
 
     <h3>Houses</h3>
-
+        
 <table class="table">
   <thead>
     <tr>
@@ -27,23 +28,20 @@
     </tr>
   </thead>
 
-  <tbody>
-  <div class="houses" id="houses">
+  <tbody class="houses" id="houses">
     <% @houses.each do |house| %>
       <tr>
         <td><%= house.house_type %></td>
         <td><%= house.category %></td>
         <td><%= house.square_feet %></td>
         <td><%= house.amount %></td>
-        <td><%= link_to 'View Details', show_user_path(house) %></td>
-    
+        <td><%= link_to 'View Details', show_user_path(house.house_id) %></td>
       </tr>
-       <% end %>
-
-   </div>
-    
+    <% end %>
   </tbody>
 </table>
+
+
 
 
 

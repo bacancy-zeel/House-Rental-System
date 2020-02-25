@@ -1,8 +1,9 @@
+var houses = document.getElementById("houses");
 
 <% @houses.each do |house| %>
-
-   var option2='<tr><td><%=house.house_address%></td><td><%=house.category%></td><td><%=house.square_feet%></td><td><%=house.first_name%></td></tr>';
-   
-   $("#houses").append(option2);
+  var option2='<tr><td><%=house.house_type%></td><td><%=house.category%></td><td><%=house.square_feet%></td><td><%=house.amount%></td><td><%= link_to 'View Details', show_user_path(house.house_id) %></td></tr>';
+    console.log(option2);
+  var data = data + option2;
 <% end %>
 
+$("#houses").html(data);
