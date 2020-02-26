@@ -4,8 +4,9 @@ Rails.application.routes.draw do
   resources :houses
   # resources :posts
   # resources :addresses
-  resources :users, only: :index
+  resources :users, only: [:index, :edit, :update]
   resources :cities, only: :index
+  get "users/approval" => "users#approval", as: :approval
   get "users/search" => "users#search", as: :search
   get "users/show/:id" => "users#show", as: :show_user
   get "/addresses/new/:id" => "addresses#new", as: :new_address

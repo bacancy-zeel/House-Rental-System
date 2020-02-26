@@ -1,0 +1,23 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Category</th>
+      <th>Square feet</th>
+      <th>Amount</th>
+      <th>View Details</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @approval.each do |house| %>
+      <tr>
+        <td><%= house.house_type %></td>
+        <td><%= house.category %></td>
+        <td><%= house.square_feet %></td>
+        <td><%= house.amount %></td>
+        <td><%= link_to 'View Details', show_user_path(house.house_id) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

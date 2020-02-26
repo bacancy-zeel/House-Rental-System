@@ -15,9 +15,9 @@
     
 </div>
 
-    <h3>Houses</h3>
-        
-<table class="table">
+
+  <h3>Houses</h3>
+  <table class="table">
   <thead>
     <tr>
       <th>Type</th>
@@ -28,7 +28,7 @@
     </tr>
   </thead>
 
-  <tbody class="houses" id="houses">
+  <tbody>
     <% @houses.each do |house| %>
       <tr>
         <td><%= house.house_type %></td>
@@ -39,7 +39,9 @@
       </tr>
     <% end %>
   </tbody>
-</table>
+  </table>
+
+
 
 
 
