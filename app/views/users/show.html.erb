@@ -85,7 +85,17 @@
 </div>
 
 <br><br>
-<%= link_to 'Approve', edit_user_path(@houses.house_id) %>
+<% if user_signed_in?%>
+  <% if current_user.has_role? (:admin)%>
+  
+    <% if @houses.approved == true %>
+      <%= link_to 'Disapprove', user_path(@houses.house_id), method: :patch %>
+    <% else %>
+      <%= link_to 'Approve', user_path(@houses.house_id), method: :patch %>
+    <% end %>
+  <%end%>
+<%end%>
+
 
 <br><br>
 <%= link_to 'Back', root_path %>

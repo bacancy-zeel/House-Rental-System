@@ -12,9 +12,8 @@ require("channels")
 require("packs/state")
 
 import "bootstrap";
-import "../stylesheets/application";
-import "../stylesheets/style";
-import "@fortawesome/fontawesome-free/js/all";
+
+
 
 
 
