@@ -4,7 +4,7 @@
     <title>HouseRentalSystem</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     
   </head>
@@ -15,7 +15,8 @@
     <div class="home">
       <div name="header" class="header">
         <div class="logo">
-          <h2> House Rental System </h2>
+        
+          <h2><b> House Rental</h2>
         </div>
         <div class="menu">
         <%= link_to '| Home',  root_path%>

@@ -15,7 +15,6 @@ class UsersController < ApplicationController
   def show
     @houses = House.joins(:address,:user).select('houses.*,addresses.*,users.*').find_by("houses.id=?",params[:id])
     @house = House.find(params[:id])
-    # @address = Address.find_by(house_id: @house)
     
   end
 
@@ -34,13 +33,22 @@ class UsersController < ApplicationController
   
 
   def update
-    @approval.approved = true
-    render :approval, :object => @approval
+    if @house.approved == false
+      @house.update(approved: true)
+      @approval = House.joins(:address,:user).select('houses.*,addresses.*,users.*').where("houses.approved=?",false)
+      redirect_to approval_path, :object => @approval
+    else
+      @house.update(approved: false)
+      @approval = House.joins(:address,:user).select('houses.*,addresses.*,users.*').where("houses.approved=?",true)
+      redirect_to root_path, :object => @approval
+    end
+    
+    
   end
   
   private
 
   def set_house
-      @approval = House.find(params[:id])
+      @house = House.find(params[:id])
   end
 end
