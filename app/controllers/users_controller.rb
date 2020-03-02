@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_house, only: [:edit, :update]
+
   def home
     @houses = House.joins(:address,:user).select('houses.*,addresses.*,users.*').where("houses.approved=?",true)
     

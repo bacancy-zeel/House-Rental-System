@@ -1,11 +1,12 @@
 
-<%= form_with(model: @house, local: true) do |form| %> 
+<% if @house.user_id == current_user.id %>
+  <%= form_with(model: @house, local: true) do |form| %> 
 
     <%= form.label :House_Type %>
-    <%= form.select :house_type, options_for_select([['Apartments'],['Villa/House'],['Flats'],['Row House'],['Farm House']]) %><br><br>
+    <%= form.select :house_type, House::House_types %><br><br>
 
     <%= form.label :Category %>
-    <%= form.select :category, options_for_select([['1-BHK'],['2-BHK'],['3-BHK'],['4-BHK']]) %><br><br>
+    <%= form.select :category, House::Categories %><br><br>
 
     <%= form.label :Square_Feet %>
     <%= form.text_field :square_feet %><br><br>
@@ -13,11 +14,13 @@
     <%= form.label :Amount %>
     <%= form.text_field :amount %><br><br>
 
+   
     <%= form.label :House_Image %>
     <%= form.file_field :images, multiple: true %><br><br>
 
-    <%= form.submit :Add_Address %>
+    <%= form.submit :edit_address %>
 
-<% end %>         
+      <% end %>  
+<% end %>       
 <br>
 <%= link_to 'Back', houses_path %>

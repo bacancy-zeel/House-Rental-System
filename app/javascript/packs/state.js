@@ -37,6 +37,17 @@ document.addEventListener("turbolinks:load", function(){
         type: "GET"
       })
   });
-      
+    
+  $("#house_category").select2({
+    theme: "bootstrap",
+    tags: true,
+    width: '196px'
+  });
+
+  $("#house_house_type").select2({
+    theme: "bootstrap",
+    tags: true,
+    width: '196px'
+  });
    
 })

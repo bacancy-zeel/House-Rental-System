@@ -35,6 +35,8 @@ gem 'cancancan'
 gem 'city-state'
 gem 'jquery-rails'
 gem 'bootstrap',  '~>4.3.1'
+# gem 'select2-rails'
+# gem 'jquery-ui-rails'
 
 
 group :development, :test do
