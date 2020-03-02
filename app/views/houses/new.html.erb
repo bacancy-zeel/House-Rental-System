@@ -1,23 +1,61 @@
 
 <%= form_with(model: @house, local: true) do |form| %> 
+<div class="container">  
+  <div class="row">
+    <div class="col-md-2">
+      <%= form.label :House_Type %>
+    </div>
+    <div class="col-md-10">
+     <%= form.select :house_type, options_from_collection_for_select(House.select(:house_type).distinct, :house_type, :house_type), {:class=>'form-control', :onchange => "myFunction(this.value);"} %>
+    </div>
+  </div>
 
-    <%= form.label :House_Type %>
-    <%= form.select :house_type, options_for_select([['Apartments'],['Villa/House'],['Flats'],['Row House'],['Farm House']]) %><br><br>
+  <div class="row">
+    <div class="col-md-2">
+     <%= form.label :Category %>
+    </div>
+    <div class="col-md-10">
+     <%= form.select :category, options_from_collection_for_select(House.select(:category).distinct, :category, :category), {:class=>'form-control', :onchange => "myFunction(this.value);"} %>
+    </div>
+  </div>
 
-    <%= form.label :Category %>
-    <%= form.select :category, House::Categories %><br><br>
+  <div class="row">
+    <div class="col-md-2">
+      <%= form.label :Square_Feet %>
+    </div>
+    <div class="col-md-10">
+      <%= form.text_field :square_feet %>
+    </div>
+  </div>
 
-    <%= form.label :Square_Feet %>
-    <%= form.text_field :square_feet %><br><br>
+  <div class="row">
+    <div class="col-md-2">
+      <%= form.label :Amount %>
+    </div>
+    <div class="col-md-10">
+      <%= form.text_field :amount %>
+    </div>
+  </div>
 
-    <%= form.label :Amount %>
-    <%= form.text_field :amount %><br><br>
+  <div class="row">
+    <div class="col-md-2">
+      <%= form.label :House_Image %>
+    </div>
+    <div class="col-md-10">
+      <%= form.file_field :images, multiple: true %><br><br>
+    </div>
+  </div>
 
-    <%= form.label :House_Image %>
-    <%= form.file_field :images, multiple: true %><br><br>
-
-    <%= form.submit :Add_Address %>
-
+  <div class="row">
+    <div class="col-md-1">
+      
+    </div>
+    <div class="col-md-11">
+    <button type="submit" class="btn btn-outline-primary">Add Address</button>
+      <%#= form.submit :Add_Address %>
+    </div>
+  </div>
 <% end %>         
 <br>
 <%= link_to 'Back', houses_path %>
+</div>

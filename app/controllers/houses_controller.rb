@@ -35,15 +35,17 @@ class HousesController < ApplicationController
     end
 
     def update
-        respond_to do |format|
-            if @house.update(house_params)
+        
+            respond_to do |format|
+                if @house.update(house_params)
 
-                format.html { redirect_to @house, notice: 'House Profile was successfully updated.' }
-            else
-                format.html { render :edit }
+                    format.html { redirect_to houses_url, notice: 'House Profile was successfully updated.' }
+                else
+                    format.html { render :edit }
+                end
+
             end
-
-        end
+        
     end
 
     def destroy
@@ -60,12 +62,14 @@ class HousesController < ApplicationController
 
     def set_house
         @house = House.find(params[:id])
+       
     end
    
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def house_params
       params.require(:house).permit(:category, :house_type, :square_feet, :amount, :reserved, :approved, :user_id, images: [])
+
     end
 
 

@@ -16,7 +16,7 @@ class AddressesController < ApplicationController
 
     def create
       @address = Address.new(address_params)
-      @address.house_id = params[:id].to_i
+      @address.house_id = params[:house_id].to_i
       if !current_user.has_role? :landlord
         current_user.add_role :landlord
       end
