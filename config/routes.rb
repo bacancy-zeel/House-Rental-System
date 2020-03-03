@@ -11,5 +11,7 @@ Rails.application.routes.draw do
   get "users/show/:id" => "users#show", as: :show_user
   get "/addresses/new/:house_id" => "addresses#new", as: :new_address
   post "/addresses/create/:house_id" => "addresses#create", as: :create_address
+  get "/addresses/edit/:house_id" => "addresses#edit", as: :edit_address
+  put "/addresses/:house_id" => "addresses#update", as: :update_address
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

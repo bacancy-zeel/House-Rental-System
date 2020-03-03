@@ -1,26 +1,61 @@
-
 <% if @house.user_id == current_user.id %>
   <%= form_with(model: @house, local: true) do |form| %> 
-
-    <%= form.label :House_Type %>
-    <%= form.select :house_type, House::House_types %><br><br>
-
-    <%= form.label :Category %>
-    <%= form.select :category, House::Categories %><br><br>
-
-    <%= form.label :Square_Feet %>
-    <%= form.text_field :square_feet %><br><br>
-
-    <%= form.label :Amount %>
-    <%= form.text_field :amount %><br><br>
-
-   
-    <%= form.label :House_Image %>
-    <%= form.file_field :images, multiple: true %><br><br>
-
-    <%= form.submit :edit_address %>
-
-      <% end %>  
-<% end %>       
-<br>
-<%= link_to 'Back', houses_path %>
+    <div class="container">  
+      <div class="row">
+        <div class="col-md-2">
+         <%= form.label :House_Type %>
+        </div>
+        <div class="col-md-10">
+          <%= form.select :house_type, House::House_types %>
+        </div>
+      </div>
+      
+      <br>
+      <div class="row">
+        <div class="col-md-2">
+          <%= form.label :Category %>
+        </div>
+        <div class="col-md-10">
+          <%= form.select :category, House::Categories %>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-md-2">
+          <%= form.label :Square_Feet %>
+        </div>
+        <div class="col-md-10">
+          <%= form.text_field :square_feet %>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-md-2">
+          <%= form.label :Amount %>
+        </div>
+        <div class="col-md-10">
+          <%= form.text_field :amount %>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-md-2">
+          <%= form.label :House_Image %>
+        </div>
+        <div class="col-md-10">
+          <%= form.file_field :images, multiple: true %>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-md-1">
+        </div>
+        <div class="col-md-11">
+          <%= form.submit :edit_address %>
+        </div>
+      </div>
+    <% end %>  
+  <% end %>       
+  <br>
+  <%= link_to 'Back', houses_path %>
+</div>

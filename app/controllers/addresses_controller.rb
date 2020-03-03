@@ -34,6 +34,16 @@ class AddressesController < ApplicationController
     end
 
     def update
+      @address = Address.where(house_id: params[:house_id])
+      respond_to do |format|
+        if @address.update(house_params)
+     
+            format.html { redirect_to houses_url, notice: 'House Profile was successfully updated.' }
+        else
+            format.html { render :edit }
+        end
+
+    end
     end
 
     def destroy
