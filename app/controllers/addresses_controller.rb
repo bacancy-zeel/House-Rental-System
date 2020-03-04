@@ -1,4 +1,6 @@
 class AddressesController < ApplicationController
+  before_action :set_address, only: [:show, :edit, :update, :destroy]
+
     def index
         @addresses = Address.all
         
@@ -12,6 +14,7 @@ class AddressesController < ApplicationController
     end
 
     def edit
+
     end
 
     def create
@@ -23,7 +26,8 @@ class AddressesController < ApplicationController
       respond_to do |format|
           
           if @address.save
-             format.html { redirect_to houses_path, notice: 'Request is sent to Admin' }
+            flash[:success] = "Request is sent to Admin"
+             format.html { redirect_to houses_path}
 
           else
               
@@ -34,16 +38,16 @@ class AddressesController < ApplicationController
     end
 
     def update
-      @address = Address.where(house_id: params[:house_id])
+ 
       respond_to do |format|
-        if @address.update(house_params)
+        if @address.update(address_params)
      
             format.html { redirect_to houses_url, notice: 'House Profile was successfully updated.' }
         else
             format.html { render :edit }
         end
 
-    end
+      end
     end
 
     def destroy
@@ -53,8 +57,13 @@ class AddressesController < ApplicationController
 
     private
 
+    def set_address
+      @address = Address.find_by(house_id: params[:house_id])
+     
+  end
+ 
     # Never trust parameters from the scary internet, only allow the white list through.
     def address_params
-      params.require(:address).permit(:house_address, :state, :city, :area, :pincode, :house_id)
+      params.permit(:house_address, :state, :city, :area, :pincode, :house_id)
     end
 end

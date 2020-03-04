@@ -1,5 +1,5 @@
-<button type="button" class="btn btn-outline-primary">
-<%= link_to 'Post House', new_house_path %></button>
+
+<%= link_to 'Post House', new_house_path , class: "btn btn-primary" %>
 
 <br><br>
 <h4>Houses Posted by <%= current_user.first_name %> <%= current_user.last_name %></h4>
@@ -12,6 +12,7 @@
       <th>Category</th>
       <th>Square Feet</th>
       <th>Amount</th>
+      <th>View</th>
       <th>Edit</th>
       <th>Destroy</th>
     </tr>
@@ -24,8 +25,9 @@
         <td><%= house.category %></td>
         <td><%= house.square_feet %></td>
         <td><%= house.amount %></td>
-        <td><%= link_to 'Edit', edit_house_path(house) %></td>
-        <td><%= link_to 'Destroy', house, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'View', house_path(house), class: "btn btn-outline-primary" %>
+        <td><%= link_to 'Edit', edit_house_path(house), class: "btn btn-outline-primary" %></td>
+        <td><%= link_to 'Destroy', house, method: :delete, data: { confirm: 'Are you sure?' } , class: "btn btn-outline-primary"%></td>
       </tr>
     <% end %>
   </tbody>
