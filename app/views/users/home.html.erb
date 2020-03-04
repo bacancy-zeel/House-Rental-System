@@ -1,20 +1,22 @@
 <div class="search">
     <%= form_with model: @house, method: :get do |f| %>
-        <div class="field">
-        <!-- Country -->
-        <%= f.label :state %>
-        
-        <%= f.select :state, options_for_select(CS.states(:in).map { |c| [c[1], c[0]] } ),{:prompt => 'Select State'} %>
-      
-    
-        <!-- State -->
-        <%= f.label :city %>
-        <%= f.select :city, options_for_select([CS.cities(:AN)] ),{:prompt => 'Select City'} %>
+      <div class="row">
+        <div class="col-md-5">
+          <%= f.label :state %>
+          
+          <%= f.select :state, options_for_select(CS.states(:in).map { |c| [c[1], c[0]] } ),{:prompt => 'Select State'},class: "btn btn-outline-secondary dropdown-toggle" %>
         </div>
+        <div class="col-md-7">
+        <!-- State -->
+          <%= f.label :city %>
+          <%= f.select :city, options_for_select([CS.cities(:AN)] ),{:prompt => 'Select City'},class: "btn btn-outline-secondary dropdown-toggle" %>
+        </div>
+      </div>
     <% end %>
     
 </div>
-
+<br>
+<br>
 
   <h3>Houses</h3>
   <table class="table">
@@ -36,7 +38,7 @@
         <td><%= house.category %></td>
         <td><%= house.square_feet %></td>
         <td><%= house.amount %></td>
-        <td><%= link_to 'View Details', show_user_path(house.house_id) %></td>
+        <td><%= link_to 'View Details', show_user_path(house.house_id), class: "btn btn-outline-primary" %></td>
       </tr>
     <% end %>
   </tbody>

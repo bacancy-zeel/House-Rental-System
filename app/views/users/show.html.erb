@@ -90,24 +90,24 @@
   <% if current_user.has_role? (:admin)%>
   
     <% if @houses.approved == true %>
-      <%= link_to 'Disapprove |', user_path(@houses.house_id), method: :patch %>
-      <%= link_to 'Reserve', user_path(@houses.house_id), method: :patch %><br>
+      <%= link_to 'Disapprove', user_path(@houses.house_id), method: :patch, class: "btn btn-outline-primary" %>
+      <%= link_to 'Reserve', user_path(@houses.house_id), method: :patch, class: "btn btn-outline-primary" %><br>
       <%= link_to 'Back', root_path %>
       <br><br>
     <% else %>
-      <%= link_to 'Approve', user_path(@houses.house_id), method: :patch %>
+      <%= link_to 'Approve', user_path(@houses.house_id), method: :patch, class: "btn btn-outline-primary" %>
       <br><br>
       <%= link_to 'Back', approval_path %>
       <br><br>
     <% end %>
   <% else %>
-    <%= link_to 'Reserve', user_path(@houses.house_id), method: :patch %>
+    <%= link_to 'Reserve', user_path(@houses.house_id), method: :patch, class: "btn btn-outline-primary" %>
     <br><br>
     <%= link_to 'Back', root_path %>
     <br><br>
   <%end%>
 <% else %>
-  <%= link_to 'Reserve', user_path(@houses.house_id), method: :patch %>
+  <%= link_to 'Reserve', user_path(@houses.house_id), method: :patch, class: "btn btn-outline-primary" %>
     
   <%= link_to 'Back', root_path %>
   <br><br>

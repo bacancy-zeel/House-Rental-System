@@ -1,0 +1,68 @@
+<div class="display">
+
+  <div style = "width:400px; height:400px;display: flex; flex-direction: column;">
+      
+        <% (0...@house.images.count).each do |image| %>
+          <%= image_tag(@house.images[image], style:"width:100%") if @house.images.attached?%>
+        <% end %>
+  </div>
+  <div class="info">
+
+
+    <p>
+      <strong>House Type:</strong>
+      <%= @houses.house_type %>
+    </p>
+
+    <p>
+      <strong>Category:</strong>
+      <%= @houses.category %>
+    </p>
+
+
+    <p>
+      <strong>Square Feet:</strong>
+      <%= @houses.square_feet %>
+    </p>
+
+    <p>
+      <strong>Amount:</strong>
+      <%= @houses.amount %>
+    </p>
+
+    <p>
+      <strong>Address :</strong>
+      <%= @houses.house_address %>
+    </p>
+
+    <p>
+      <strong>State:</strong>
+      <%= CS.states(:in)[@houses.state.to_sym] %>
+    </p>
+
+    <p>
+      <strong>City:</strong>
+      <%= @houses.city %>
+    </p>
+
+    <p>
+      <strong>Area:</strong>
+      <%= @houses.area %>
+    </p>
+
+    
+  </div>
+</div>
+<br>
+
+<%= link_to 'Back', houses_path%>
+
+
+
+  
+
+
+
+
+
+

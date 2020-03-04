@@ -8,6 +8,8 @@ class HousesController < ApplicationController
     end
 
     def show
+      @houses = House.joins(:address).select('houses.*,addresses.*').find_by("houses.id=?",params[:id])
+      
     end
 
     def new
