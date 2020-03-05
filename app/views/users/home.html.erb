@@ -1,3 +1,4 @@
+<br>
 <div class="search">
     <%= form_with model: @house, method: :get do |f| %>
       <div class="row">
@@ -38,7 +39,7 @@
         <td><%= house.category %></td>
         <td><%= house.square_feet %></td>
         <td><%= house.amount %></td>
-        <td><%= link_to 'View Details', show_user_path(house.house_id), class: "btn btn-outline-primary" %></td>
+        <td><%= link_to 'View Details', show_house_path(house.house_id), class: "btn btn-outline-primary" %></td>
       </tr>
     <% end %>
   </tbody>

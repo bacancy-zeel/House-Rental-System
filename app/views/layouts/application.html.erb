@@ -20,8 +20,9 @@
                 <li><%= link_to ' Post House', houses_path, class: "nav-item nav-link" %></li>
                 <% if current_user %>
                   <% if current_user.has_role? :admin %>
-                    <li><%= link_to 'Approval', approval_path, class: "nav-item nav-link" %></li>
+                    <li><%= link_to 'Approval', not_approved_path, class: "nav-item nav-link" %></li>
                   <% end %>
+                  
                   <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete, class: "btn btn-outline-primary" %></li>
                 <% else %>
                   <li><%= link_to 'Sign In', user_session_path, class: "btn btn-outline-primary" %></li>
@@ -32,11 +33,11 @@
     
           
       <div class="container">
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+ 
     <% flash.each do |key, value| %>
         <div class="alert alert-<%= key %>"><%= value %></div>
       <% end %>
+      <br><br>
     <%= yield %>
   </div>
   </div>

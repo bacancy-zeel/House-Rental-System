@@ -25,20 +25,10 @@
     padding-left: 100px;
 }
 
-ul{
-  float: right;
-    list-style: none;
-}
-li
-{
-  float: left;
-      margin-left: 10px;
-}
-.topnav {
-  overflow: hidden;
-  background-color: rgb(126, 120, 120);
-}
 
-.topnav-right {
-  float: right;
+
+.request
+{
+  color: red;
+  margin-right: 5px;
 }
