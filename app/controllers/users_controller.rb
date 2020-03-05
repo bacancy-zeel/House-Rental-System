@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_action :set_house, only: [:edit, :update]
 
   def home
-    @houses = House.joins(:address,:user).select('houses.*,addresses.*,users.*').where("houses.approved=?",true)
+    @houses = House.joins(:address,:user).select('houses.*,addresses.*,users.*').where("houses.approved=? AND houses.reserved=?",true,false)
     
   end
 
@@ -13,11 +13,13 @@ class UsersController < ApplicationController
     
   end
 
-  def show
+  def show_house
     @houses = House.joins(:address,:user).select('houses.*,addresses.*,users.*').find_by("houses.id=?",params[:id])
     @house = House.find(params[:id])
     
   end
+
+  
 
   def search 
     @houses = Address.where(city: params[:city])
@@ -26,7 +28,7 @@ class UsersController < ApplicationController
     
   end
 
-  def approval
+  def not_approved
     @approval = House.joins(:address,:user).select('houses.*,addresses.*,users.*').where("houses.approved=?",false)
 
   end
@@ -34,10 +36,11 @@ class UsersController < ApplicationController
   
 
   def update
+
     if @house.approved == false
       @house.update(approved: true)
       @approval = House.joins(:address,:user).select('houses.*,addresses.*,users.*').where("houses.approved=?",false)
-      redirect_to approval_path, :object => @approval
+      redirect_to not_approved_path, :object => @approval
     else
       @house.update(approved: false)
       @approval = House.joins(:address,:user).select('houses.*,addresses.*,users.*').where("houses.approved=?",true)

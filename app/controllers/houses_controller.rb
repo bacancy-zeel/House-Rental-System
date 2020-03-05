@@ -50,12 +50,34 @@ class HousesController < ApplicationController
         
     end
 
+    def approval_update
+      @house = House.find(params[:house_id])
+      if @house.approved == false
+        @house.update(approved: true)
+        @approval = House.joins(:address,:user).select('houses.*,addresses.*,users.*').where("houses.approved=?",false)
+        redirect_to not_approved_path, :object => @approval
+      else
+        @house.update(approved: false)
+        @approval = House.joins(:address,:user).select('houses.*,addresses.*,users.*').where("houses.approved=?",true)
+        redirect_to root_path, :object => @approval
+      end
+    end
+
+    def reserve_update
+      @house = House.find(params[:house_id])
+      @house.update(reserved: true)
+      current_user.add_role :customer
+      flash[:success] = "Request is sent to House Owner"
+      redirect_to root_path
+    end
+
+   
     def destroy
-        @house.destroy
-        respond_to do |format|
+      @house.destroy
+      respond_to do |format|
         format.html { redirect_to houses_url, notice: 'House was successfully destroyed.' }
         format.json { head :no_content }
-    end
+      end
     end
 
 
