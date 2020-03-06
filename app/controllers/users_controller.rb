@@ -3,7 +3,7 @@ class UsersController < ApplicationController
 
   def home
     @houses = House.joins(:address,:user).select('houses.*,addresses.*,users.*').where("houses.approved=? AND houses.reserved=?",true,false)
-    
+
   end
 
   def index
