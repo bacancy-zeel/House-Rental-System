@@ -41,7 +41,7 @@ class HousesController < ApplicationController
             respond_to do |format|
                 if @house.update(house_params)
 
-                    format.html { redirect_to houses_url, notice: 'House Profile was successfully updated.' }
+                    format.html { redirect_to edit_address_path(@house),method: :post, notice: 'House Profile was successfully updated.' }
                 else
                     format.html { render :edit }
                 end
@@ -65,9 +65,11 @@ class HousesController < ApplicationController
 
     def reserve_update
       @house = House.find(params[:house_id])
+      @user = User.find(id: @house.user_id)
       @house.update(reserved: true)
       current_user.add_role :customer
-      flash[:success] = "Request is sent to House Owner"
+      flash[:success] = "You will Receive Confirmation mail"
+      BookingMailer.booking_confirmation(current_user.first_name,current_user.last_name,@user.first_name,@user.last_name,current_user.email).deliver
       redirect_to root_path
     end
 

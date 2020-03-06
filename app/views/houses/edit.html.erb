@@ -1,5 +1,5 @@
 <% if @house.user_id == current_user.id %>
-  <%= form_with(model: @house, local: true, url: edit_address_path(@house), method: :post) do |form| %> 
+  <%= form_with(model: @house, local: true) do |form| %> 
     <div class="container">  
       <div class="row">
         <div class="col-md-2">
@@ -35,6 +35,18 @@
         </div>
         <div class="col-md-10">
           <%= form.text_field :amount %>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-md-2">
+          <%= form.label :Reserved %>
+        </div>
+        <div class="col-md-10">
+          <%= form.radio_button(:reserved,false) %>
+          <%= form.label ("false")  %>
+          <%= form.radio_button(:reserved,true) %>
+          <%= form.label ("true")  %>
         </div>
       </div>
       <br>
