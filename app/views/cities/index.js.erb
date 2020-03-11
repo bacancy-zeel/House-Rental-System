@@ -7,7 +7,7 @@ var data = '';
 
 
   <% @houses.each do |house| %>
-    option2='<tr><td><%=house.house_type%></td><td><%=house.category%></td><td><%=house.square_feet%></td><td><%=house.amount%></td><td><%= link_to 'View Details', show_user_path(house.house_id) %></td></tr>';
+    option2='<tr><td><%=house.house_type%></td><td><%=house.category%></td><td><%=house.square_feet%></td><td><%=house.amount%></td><td><%= link_to 'View Details', show_house_path(house.house_id) %></td></tr>';
       console.log(option2);
     var data = data + option2;
   <% end %>

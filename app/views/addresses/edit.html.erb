@@ -1,12 +1,12 @@
-
-<%= form_with(local: true, url: update_address_path(@address.house.id) , method: :put) do |form| %> 
+<% if @house.user_id == current_user.id %>
+<%= form_with(model: @address, local: true, url: update_address_path(@address.house.id) , method: :put) do |form| %> 
     <div class="container">  
       <div class="row">
         <div class="col-md-2">
          <%= form.label :House_Address %>
         </div>
         <div class="col-md-10">
-          <%= form.text_field :house_address, :value => @address.house_address %>
+          <%= form.text_field :house_address %>
         </div>
       </div>
       
@@ -16,7 +16,7 @@
           <%= form.label :State %>
         </div>
         <div class="col-md-10">
-          <%= form.select :state, options_for_select(CS.states(:in).map { |c| [c[1], c[0]] } ), :selected => @address.state %>
+          <%= form.select :state, options_for_select(CS.states(:in).map { |c| [c[1], c[0]] }, @address.state ) %>
         </div>
       </div>
       <br>
@@ -25,7 +25,8 @@
           <%= form.label :City %>
         </div>
         <div class="col-md-10">
-          <%= form.select :city, options_for_select(CS.cities(:AN) ),{:prompt => 'Select City'}, :selected => @address.city %>
+  
+          <%= form.select :city, options_for_select(CS.cities(@address.state), @address.city) %>
         </div>
       </div>
       <br>
@@ -34,7 +35,7 @@
           <%= form.label :Area %>
         </div>
         <div class="col-md-10">
-          <%= form.text_field :area, :value => @address.area %>
+          <%= form.text_field :area %>
         </div>
       </div>
       <br>
@@ -43,7 +44,7 @@
           <%= form.label :Pincode %>
         </div>
         <div class="col-md-10">
-          <%= form.text_field :pincode, :value => @address.pincode %>
+          <%= form.text_field :pincode %>
         </div>
       </div>
       <br>
@@ -51,10 +52,11 @@
         <div class="col-md-1">
         </div>
         <div class="col-md-11">
-          <%= form.submit :Submit %>
+          <%= form.submit :Submit, class: "btn btn-primary" %>
         </div>
       </div>
     <% end %>  
       
   <br>
   <%= link_to 'Back', edit_house_path(@address.house_id) %>
+  <% end %>
