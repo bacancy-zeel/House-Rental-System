@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateAddresses < ActiveRecord::Migration[6.0]
   def change
     create_table :addresses do |t|
@@ -7,7 +9,7 @@ class CreateAddresses < ActiveRecord::Migration[6.0]
       t.string :area
       t.integer :pincode
       t.references :house, foreign_key: true
-     
+
       t.timestamps
     end
   end

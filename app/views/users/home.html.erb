@@ -10,7 +10,7 @@
         <div class="col-md-7">
         <!-- State -->
           <%= f.label :city %>
-          <%= f.select :city, options_for_select([CS.cities(:AN)] ),{:prompt => 'Select City'},class: "btn btn-outline-secondary dropdown-toggle" %>
+          <%= f.select :city, options_for_select([] ),{:prompt => 'Select City'},class: "btn btn-outline-secondary dropdown-toggle" %>
         </div>
       </div>
     <% end %>

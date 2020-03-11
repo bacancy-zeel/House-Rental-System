@@ -8,7 +8,7 @@
     <%= form.select :state, options_for_select(CS.states(:in).map { |c| [c[1], c[0]] } ),{:prompt => 'Select State'} %><br><br>
 
     <%= form.label :city %>
-    <%= form.select :city, options_for_select(CS.cities(:AN) ),{:prompt => 'Select City'} %><br><br>
+    <%= form.select :city, options_for_select([] ),{:prompt => 'Select City'} %><br><br>
 
     <%= form.label :Area %>
     <%= form.text_field :area %><br><br>
