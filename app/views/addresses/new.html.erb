@@ -1,22 +1,78 @@
+<% if @address.errors.any? %>
 
+      <h2><%= pluralize(@address.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+        <% @address.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+
+  <% end %>
 <%= form_with(model: @address,url: create_address_path(params[:house_id]),method: :post, local: true) do |form| %> 
 
-    <%= form.label :Address %>
-    <%= form.text_field :house_address %><br><br>
+  <div class="row">
+    <div class="col-md-2">
+      <%= form.label :Address %>
+    </div>
+    <div class="col-md-10">
+      <%= form.text_area :house_address %>
+    </div>
+  </div>
 
-    <%= form.label :State %>
-    <%= form.select :state, options_for_select(CS.states(:in).map { |c| [c[1], c[0]] } ),{:prompt => 'Select State'} %><br><br>
+  <br>
 
-    <%= form.label :city %>
-    <%= form.select :city, options_for_select([] ),{:prompt => 'Select City'} %><br><br>
+  <div class="row">
+    <div class="col-md-2">
+      <%= form.label :State %>
+    </div>
+    <div class="col-md-10">
+      <%= form.select :state, options_for_select(CS.states(:in).map { |c| [c[1], c[0]] } ),{:prompt => 'Select State'}, class: "btn btn-outline-secondary" %>
+    </div>
+  </div>
 
-    <%= form.label :Area %>
-    <%= form.text_field :area %><br><br>
+  <br>
 
-    <%= form.label :Pincode %>
-    <%= form.text_field :pincode %><br><br>
+  <div class="row">
+    <div class="col-md-2">
+      <%= form.label :city %>
+    </div>
+    <div class="col-md-10">
+      <%= form.select :city, options_for_select([] ),{:prompt => 'Select City'}, class: "btn btn-outline-secondary" %>
+    </div>
+  </div>
 
-    <%= form.submit :Submit %>
+  <br>
+
+  <div class="row">
+    <div class="col-md-2">
+      <%= form.label :Area %>
+    </div>
+    <div class="col-md-10">
+      <%= form.text_field :area %>
+    </div>
+  </div>
+
+  <br>
+
+  <div class="row">
+    <div class="col-md-2">
+      <%= form.label :Pincode %>
+    </div>
+    <div class="col-md-10">
+      <%= form.text_field :pincode %>
+    </div>
+  </div>
+
+  <br>
+
+  <div class="row">
+    <div class="col-md-2">
+    </div>
+    <div class="col-md-10">
+      <%= form.submit :Submit, class: "btn btn-primary" %>
+    </div>
+  </div>
 
 <% end %>         
 <br>
