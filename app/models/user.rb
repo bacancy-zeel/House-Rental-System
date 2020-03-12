@@ -12,9 +12,9 @@ class User < ApplicationRecord
   has_many :comments
   has_many :reservations
 
-  validates :first_name, presence: true, length: { maximum: 50 }
+  validates :first_name, presence: true
   validates :last_name, presence: true
-  validates :contact, presence: true, format: { with: /\A+(\d){2,3}[\ ]*[\-]*[0-9]{10}\Z/ }
+  validates :contact, presence: true
   validates :birth_date, presence: true
   validates :gender, presence: true
 end

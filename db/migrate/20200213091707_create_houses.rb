@@ -6,7 +6,7 @@ class CreateHouses < ActiveRecord::Migration[6.0]
       t.string :category
       t.string :house_type
       t.string :square_feet
-      t.decimal :amount
+      t.integer :amount
       t.boolean :reserved, default: false
       t.boolean :approved, default: false
       t.references :user, foreign_key: true
