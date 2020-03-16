@@ -2,56 +2,56 @@
 
   <div style = "width:400px; height:400px;display: flex; flex-direction: column;">
       
-        <% (0...@house.images.count).each do |image| %>
-          <%= image_tag(@house.images[image], style:"width:100%") if @house.images.attached?%>
+        <% (0...@img.images.count).each do |image| %>
+          <%= image_tag(@img.images[image], style:"width:100%") if @img.images.attached?%>
         <% end %>
   </div>
   <div class="info">
 
   <p>
       <strong>Approved:</strong>
-      <%= @houses.approved %>
+      <%= @house.approved %>
     </p>
 
     <p>
       <strong>House Type:</strong>
-      <%= @houses.house_type %>
+      <%= @house.house_type %>
     </p>
 
     <p>
       <strong>Category:</strong>
-      <%= @houses.category %>
+      <%= @house.category %>
     </p>
 
 
     <p>
       <strong>Square Feet:</strong>
-      <%= @houses.square_feet %>
+      <%= @house.square_feet %>
     </p>
 
     <p>
       <strong>Amount:</strong>
-      <%= @houses.amount %>
+      <%= @house.amount %>
     </p>
 
     <p>
       <strong>Address :</strong>
-      <%= @houses.house_address %>
+      <%= @house.house_address %>
     </p>
 
     <p>
       <strong>State:</strong>
-      <%= CS.states(:in)[@houses.state.to_sym] %>
+      <%= CS.states(:in)[@house.state.to_sym] %>
     </p>
 
     <p>
       <strong>City:</strong>
-      <%= @houses.city %>
+      <%= @house.city %>
     </p>
 
     <p>
       <strong>Area:</strong>
-      <%= @houses.area %>
+      <%= @house.area %>
     </p>
 
     

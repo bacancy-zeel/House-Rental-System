@@ -20,10 +20,13 @@ class AddressesController < ApplicationController
   def create
     @address = Address.new(address_params)
     @address.house_id = params[:house_id].to_i
+    @house = House.find_by(id: params[:house_id])
+    @user = @house.user
     current_user.add_role :landlord unless current_user.has_role? :landlord
     respond_to do |format|
       if @address.save
         flash[:success] = 'Request is sent to Admin'
+        BookingMailer.house_post(@user).deliver
         format.html { redirect_to houses_path }
 
       else
@@ -55,6 +58,6 @@ class AddressesController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def address_params
-    params.require(:address).permit(:house_address, :state, :city, :area, :pincode, :house_id)
+    params.require(:address).permit(:house_address, :state, :city, :area, :pincode)
   end
 end
