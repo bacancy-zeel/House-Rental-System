@@ -43,8 +43,8 @@ Rails.application.configure do
     port: 587,
     domain: 'gmail.com',
     authentication: 'plain',
-    user_name: 'zeel.bhavsar99@gmail.com',
-    password: 'Bhavsar@9408602894'
+    user_name: 'houserental0000@gmail.com',
+    password: 'house@123'
   }
 
   # Print deprecation notices to the Rails logger.

@@ -1,15 +1,17 @@
 # frozen_string_literal: true
 
 class HousesController < ApplicationController
-  before_action :set_house, only: %i[show edit update destroy]
+  before_action :set_house, only: %i[edit update destroy]
   before_action :authenticate_user!
 
   def index
+    current_user.houses
     @house = House.where(user_id: current_user.id)
   end
 
   def show
-    @houses = House.joins(:address).select('houses.*,addresses.*').find_by('houses.id=?', params[:id])
+    @img = House.find(params[:id])
+    @house = House.joins(:address).select('houses.*,addresses.*').find_by('houses.id=?', params[:id])
   end
 
   def new
@@ -46,17 +48,15 @@ class HousesController < ApplicationController
 
   def approval_update
     @house = House.find(params[:house_id])
-    @user = User.find_by(id: @house.user_id)
+    @user = @house.user
     if @house.approved == false
       @house.update(approved: true)
-      BookingMailer.house_approval(current_user.first_name, current_user.last_name, @user.first_name, @user.last_name, @user.email).deliver
-      @approval = House.joins(:address, :user).select('houses.*,addresses.*,users.*').where('houses.approved=?', false)
-      redirect_to not_approved_path, object: @approval
+      BookingMailer.house_approval(current_user, @user).deliver
+      redirect_to not_approved_path
     else
       @house.update(approved: false)
-      BookingMailer.house_disapproval(current_user.first_name, current_user.last_name, @user.first_name, @user.last_name, @user.email).deliver
-      @approval = House.joins(:address, :user).select('houses.*,addresses.*,users.*').where('houses.approved=?', true)
-      redirect_to root_path, object: @approval
+      BookingMailer.house_disapproval(current_user, @user).deliver
+      redirect_to root_path
     end
   end
 
@@ -66,7 +66,7 @@ class HousesController < ApplicationController
     @house.update(reserved: true)
     current_user.add_role :customer
     flash[:success] = 'You will Receive Confirmation mail'
-    BookingMailer.booking_confirmation(current_user.first_name, current_user.last_name, @user.first_name, @user.last_name, current_user.email).deliver
+    BookingMailer.booking_confirmation(current_user, @user).deliver
     redirect_to root_path
   end
 
@@ -86,6 +86,6 @@ class HousesController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def house_params
-    params.require(:house).permit(:category, :house_type, :square_feet, :amount, :reserved, :approved, :user_id, images: [])
+    params.require(:house).permit(:category, :house_type, :square_feet, :amount, :reserved, :approved, images: [])
   end
 end

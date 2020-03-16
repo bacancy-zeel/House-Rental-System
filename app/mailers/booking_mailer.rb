@@ -6,30 +6,26 @@ class BookingMailer < ApplicationMailer
   #
   #   en.booking_mailer.booking_confirmation.subject
   #
-  def booking_confirmation(customer_fname, customer_lname, owner_fname, owner_lname, customer_email)
-    @customer_fname = customer_fname
-    @customer_lname = customer_lname
-    @owner_fname = owner_fname
-    @owner_lname = owner_lname
-    @customer_email = customer_email
-    mail to: @customer_email, subject: 'House Reservation Confirmation'
+  def booking_confirmation(customer, owner)
+    @customer = customer
+    @owner = owner
+    mail to: @customer.email, subject: 'House Reservation Confirmation'
   end
 
-  def house_approval(admin_fname, admin_lname, owner_fname, owner_lname, owner_email)
-    @admin_fname = admin_fname
-    @admin_lname = admin_lname
-    @owner_fname = owner_fname
-    @owner_lname = owner_lname
-    @owner_email = owner_email
-    mail to: @owner_email, subject: 'House Approval Confirmation'
+  def house_approval(owner, admin)
+    @admin = admin
+    @owner = owner
+    mail to: @owner.email, subject: 'House Approval Confirmation'
   end
 
-  def house_disapproval(admin_fname, admin_lname, owner_fname, owner_lname, owner_email)
-    @admin_fname = admin_fname
-    @admin_lname = admin_lname
-    @owner_fname = owner_fname
-    @owner_lname = owner_lname
-    @owner_email = owner_email
-    mail to: @owner_email, subject: 'House Rejection Confirmation'
+  def house_disapproval(admin, owner)
+    @admin = admin
+    @owner = owner
+    mail to: @owner.email, subject: 'House Rejection Confirmation'
+  end
+
+  def house_post(owner)
+    @owner = owner
+    mail to: 'zeelbhavsar06@gmail.com', subject: 'New House Added'
   end
 end
