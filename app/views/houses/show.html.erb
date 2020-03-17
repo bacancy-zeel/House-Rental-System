@@ -2,36 +2,36 @@
 
   <div style = "width:400px; height:400px;display: flex; flex-direction: column;">
       
-        <% (0...@img.images.count).each do |image| %>
-          <%= image_tag(@img.images[image], style:"width:100%") if @img.images.attached?%>
+        <% (0...@house.house.images.count).each do |image| %>
+          <%= image_tag(@house.house.images[image], style:"width:100%") if @house.house.images.attached?%>
         <% end %>
   </div>
   <div class="info">
 
   <p>
       <strong>Approved:</strong>
-      <%= @house.approved %>
+      <%= @house.house.approved %>
     </p>
 
     <p>
       <strong>House Type:</strong>
-      <%= @house.house_type %>
+      <%= @house.house.house_type %>
     </p>
 
     <p>
       <strong>Category:</strong>
-      <%= @house.category %>
+      <%= @house.house.category %>
     </p>
 
 
     <p>
       <strong>Square Feet:</strong>
-      <%= @house.square_feet %>
+      <%= @house.house.square_feet %>
     </p>
 
     <p>
       <strong>Amount:</strong>
-      <%= @house.amount %>
+      <%= @house.house.amount %>
     </p>
 
     <p>

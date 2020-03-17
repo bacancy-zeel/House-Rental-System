@@ -3,10 +3,9 @@
 class Address < ApplicationRecord
   belongs_to :house
 
-  validates :house_address, presence: true
-  validates :state, presence: true
-  validates :city, presence: true
-  validates :area, presence: true
-  validates :pincode, presence: true, length: { is: 6 }, numericality: { only_integer: true }
+  validates :house_address, :state, :city, :area, :pincode, presence: true
+  validates :pincode, length: { is: 6 }, numericality: { only_integer: true },
+                      if: :pincode_present?
 
+  delegate :present?, to: :pincode, prefix: true
 end
