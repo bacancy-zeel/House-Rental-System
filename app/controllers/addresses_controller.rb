@@ -40,8 +40,10 @@ class AddressesController < ApplicationController
     respond_to do |format|
       if @address.update(address_params)
 
-        format.html { redirect_to houses_url, notice: 'House Profile was '\
-                                                      'successfully updated.' }
+        format.html do
+          redirect_to houses_url,
+                      notice: 'House Profile was successfully updated.'
+        end
       else
         format.html { render :edit }
       end
@@ -56,8 +58,10 @@ class AddressesController < ApplicationController
     @address = Address.find_by(house_id: params[:house_id])
   end
 
-  # Never trust parameters from the scary internet, only allow the white list through.
+  # Never trust parameters from the scary internet, only allow the white list
+  # through.
   def address_params
-    params.require(:address).permit(:house_address, :state, :city, :area, :pincode)
+    params.require(:address).permit(:house_address, :state, :city, :area,
+                                    :pincode)
   end
 end

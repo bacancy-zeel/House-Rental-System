@@ -10,8 +10,9 @@ class HousesController < ApplicationController
   end
 
   def show
-    @img = House.find(params[:id])
-    @house = House.joins(:address).select('houses.*,addresses.*').find_by('houses.id=?', params[:id])
+    @house = Address.eager_load(:house)
+                    .where('addresses.house_id=?', params[:id]).first
+ 
   end
 
   def new
@@ -25,24 +26,20 @@ class HousesController < ApplicationController
     @house.user = current_user
     respond_to do |format|
       if @house.save
-
         format.html { redirect_to new_address_path(@house) }
-
       else
-
         format.html { render :new }
       end
     end
   end
 
   def update
-    respond_to do |format|
-      if @house.update(house_params)
-
-        format.html { redirect_to edit_address_path(@house), method: :post, notice: 'House Profile was successfully updated.' }
-      else
-        format.html { render :edit }
-      end
+    if @house.update(house_params)
+      redirect_to edit_address_path(@house),
+                  method: :post,
+                  notice: 'House Profile was successfully updated.'
+    else
+      render :edit
     end
   end
 
@@ -72,10 +69,7 @@ class HousesController < ApplicationController
 
   def destroy
     @house.destroy
-    respond_to do |format|
-      format.html { redirect_to houses_url, notice: 'House was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    redirect_to houses_url, notice: 'House was successfully destroyed.' 
   end
 
   private
@@ -84,8 +78,10 @@ class HousesController < ApplicationController
     @house = House.find(params[:id])
   end
 
-  # Never trust parameters from the scary internet, only allow the white list through.
+  # Never trust parameters from the scary internet, only allow the white list
+  # through.
   def house_params
-    params.require(:house).permit(:category, :house_type, :square_feet, :amount, :reserved, :approved, images: [])
+    params.require(:house).permit(:category, :house_type, :square_feet, :amount,
+                                  :reserved, :approved, images: [])
   end
 end

@@ -12,9 +12,6 @@ class User < ApplicationRecord
   has_many :comments
   has_many :reservations
 
-  validates :first_name, presence: true
-  validates :last_name, presence: true
-  validates :contact, presence: true
-  validates :birth_date, presence: true
-  validates :gender, presence: true
+  validates :first_name, :last_name, :contact, :birth_date, :gender,
+            presence: true
 end
