@@ -3,52 +3,50 @@
 
   <div style = "width:400px; height:400px;display: flex; flex-direction: column;">
       
-        <% (0...@house.images.count).each do |image| %>
-          <%= image_tag(@house.images[image], style:"width:100%") if @house.images.attached?%>
+        <% (0...@house.house.images.count).each do |image| %>
+          <%= image_tag(@house.house.images[image], style:"width:100%") if @house.house.images.attached?%>
         <% end %>
   </div>
   <div class="info">
-
-
     <p>
       <strong>House Type:</strong>
-      <%= @houses.house_type %>
+      <%= @house.house.house_type %>
     </p>
 
     <p>
       <strong>Category:</strong>
-      <%= @houses.category %>
+      <%= @house.house.category %>
     </p>
 
 
     <p>
       <strong>Square Feet:</strong>
-      <%= @houses.square_feet %>
+      <%= @house.house.square_feet %>
     </p>
 
     <p>
       <strong>Amount:</strong>
-      <%= @houses.amount %>
+      <%= @house.house.amount %>
     </p>
 
     <p>
       <strong>Address :</strong>
-      <%= @houses.house_address %>
+      <%= @house.house_address %>
     </p>
 
     <p>
       <strong>State:</strong>
-      <%= CS.states(:in)[@houses.state.to_sym] %>
+      <%= CS.states(:in)[@house.state.to_sym] %>
     </p>
 
     <p>
       <strong>City:</strong>
-      <%= @houses.city %>
+      <%= @house.city %>
     </p>
 
     <p>
       <strong>Area:</strong>
-      <%= @houses.area %>
+      <%= @house.area %>
     </p>
 
     <p>
@@ -71,17 +69,17 @@
     
     <p>
       <strong>Name:</strong>
-      <%= @houses.first_name %> <%= @houses.last_name %>
+      <%= @house.house.user.first_name %> <%= @house.house.user.last_name %>
     </p>
 
     <p>
       <strong>Email id:</strong>
-      <%= @houses.email %> 
+      <%= @house.house.user.email %> 
     </p>
 
     <p>
       <strong>Contact No:</strong>
-      <%= @houses.contact %> 
+      <%= @house.house.user.contact %> 
     </p>
   </div>
 </div>
@@ -90,25 +88,25 @@
 <% if user_signed_in? %>
   <% if current_user.has_role? (:admin)%>
   
-    <% if @houses.approved == true %>
-      <%= link_to 'Disapprove', approval_update_path(@houses.house_id), method: :patch, class: "btn btn-outline-primary" %>
-      <%= link_to 'Book', reserve_update_path(@houses.house_id), method: :patch, class: "btn btn-outline-primary" %><br>
+    <% if @house.house.approved == true %>
+      <%= link_to 'Disapprove', approval_update_path(@house.house_id), method: :patch, class: "btn btn-outline-primary" %>
+      <%= link_to 'Book', reserve_update_path(@house.house_id), method: :patch, class: "btn btn-outline-primary" %><br>
       <%= link_to 'Back', root_path %>
       <br><br>
     <% else %>
-      <%= link_to 'Approve', approval_update_path(@houses.house_id), method: :patch, class: "btn btn-outline-primary" %>
+      <%= link_to 'Approve', approval_update_path(@house.house_id), method: :patch, class: "btn btn-outline-primary" %>
       <br><br>
       <%= link_to 'Back', not_approved_path %>
       <br><br>
     <% end %>
   <% else %>
-    <%= link_to 'Book', reserve_update_path(@houses.house_id), method: :patch, class: "btn btn-outline-primary" %>
+    <%= link_to 'Book', reserve_update_path(@house.house_id), method: :patch, class: "btn btn-outline-primary" %>
     <br><br>
     <%= link_to 'Back', root_path %>
     <br><br>
   <%end%>
 <% else %>
-  <%= link_to 'Book', reserve_update_path(@houses.house_id), method: :patch, class: "btn btn-outline-primary" %>
+  <%= link_to 'Book', reserve_update_path(@house.house_id), method: :patch, class: "btn btn-outline-primary" %>
   <br><br>
   <%= link_to 'Back', root_path %>
   <br><br>

@@ -45,16 +45,6 @@ ActiveRecord::Schema.define(version: 2020_02_18_085418) do
     t.index ["house_id"], name: "index_addresses_on_house_id"
   end
 
-  create_table "comments", force: :cascade do |t|
-    t.text "description"
-    t.integer "house_id"
-    t.integer "user_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["house_id"], name: "index_comments_on_house_id"
-    t.index ["user_id"], name: "index_comments_on_user_id"
-  end
-
   create_table "houses", force: :cascade do |t|
     t.string "category"
     t.string "house_type"
@@ -117,8 +107,6 @@ ActiveRecord::Schema.define(version: 2020_02_18_085418) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "addresses", "houses"
-  add_foreign_key "comments", "houses"
-  add_foreign_key "comments", "users"
   add_foreign_key "houses", "users"
   add_foreign_key "reservations", "houses"
   add_foreign_key "reservations", "users"
