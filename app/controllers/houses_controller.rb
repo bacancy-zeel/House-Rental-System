@@ -26,7 +26,7 @@ class HousesController < ApplicationController
     @house.user = current_user
     respond_to do |format|
       if @house.save
-        format.html { redirect_to new_address_path(@house) }
+        format.html { redirect_to new_house_address_path(@house) }
       else
         format.html { render :new }
       end
@@ -35,7 +35,7 @@ class HousesController < ApplicationController
 
   def update
     if @house.update(house_params)
-      redirect_to edit_address_path(@house),
+      redirect_to edit_house_address_path(@house),
                   method: :post,
                   notice: 'House Profile was successfully updated.'
     else
