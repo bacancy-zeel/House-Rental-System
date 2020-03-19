@@ -6,26 +6,24 @@ class BookingMailer < ApplicationMailer
   #
   #   en.booking_mailer.booking_confirmation.subject
   #
-  def booking_confirmation(customer, owner)
-    @customer = customer
-    @owner = owner
-    mail to: @customer.email, subject: 'House Reservation Confirmation'
+  def booking_confirmation(user, house)
+    @user = user
+    @house = house
+    mail to: @user.email, subject: 'House Reservation Confirmation'
   end
 
-  def house_approval(owner, admin)
-    @admin = admin
-    @owner = owner
-    mail to: @owner.email, subject: 'House Approval Confirmation'
+  def house_approval(house)
+    @house = house
+    mail to: @house.house.user.email, subject: 'House Approval Confirmation'
   end
 
-  def house_disapproval(admin, owner)
-    @admin = admin
-    @owner = owner
-    mail to: @owner.email, subject: 'House Rejection Confirmation'
+  def house_disapproval(house)
+    @house = house
+    mail to: @house.house.user.email, subject: 'House Rejection Confirmation'
   end
 
-  def house_post(owner)
-    @owner = owner
+  def house_post(house)
+    @house = house
     mail to: 'zeelbhavsar06@gmail.com', subject: 'New House Added'
   end
 end

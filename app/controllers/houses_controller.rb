@@ -5,8 +5,8 @@ class HousesController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    current_user.houses
-    @house = House.where(user_id: current_user.id)
+    @reserved = current_user.houses.where('houses.reserved=?', true)
+    @not_reserved = House.where(user_id: current_user.id, reserved: false)
   end
 
   def show
@@ -44,26 +44,26 @@ class HousesController < ApplicationController
   end
 
   def approval_update
-    @house = House.find(params[:house_id])
-    @user = @house.user
-    if @house.approved == false
-      @house.update(approved: true)
-      BookingMailer.house_approval(current_user, @user).deliver
+    @house = Address.eager_load(house: :user)
+                    .find_by('addresses.house_id=?', params[:house_id])
+    if @house.house.approved == false
+      @house.house.update(approved: true)
+      BookingMailer.house_approval(@house).deliver
       redirect_to not_approved_path
     else
-      @house.update(approved: false)
-      BookingMailer.house_disapproval(current_user, @user).deliver
+      @house.house.update(approved: false)
+      BookingMailer.house_disapproval(@house).deliver
       redirect_to root_path
     end
   end
 
   def reserve_update
-    @house = House.find(params[:house_id])
-    @user = User.find_by(id: @house.user_id)
-    @house.update(reserved: true)
+    @house = Address.eager_load(house: :user)
+                    .find_by('addresses.house_id=?', params[:house_id])
+    @house.house.update(reserved: true)
     current_user.add_role :customer
     flash[:success] = 'You will Receive Confirmation mail'
-    BookingMailer.booking_confirmation(current_user, @user).deliver
+    BookingMailer.booking_confirmation(current_user, @house).deliver
     redirect_to root_path
   end
 
@@ -75,7 +75,7 @@ class HousesController < ApplicationController
   private
 
   def set_house
-    @house = House.find(params[:id])
+    @house = House.find_by(id: params[:id])
   end
 
   # Never trust parameters from the scary internet, only allow the white list

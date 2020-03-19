@@ -21,10 +21,10 @@
       <tbody>
         <% @approval.each do |house| %>
           <tr>
-            <td><%= house.house_type %></td>
-            <td><%= house.category %></td>
-            <td><%= house.square_feet %></td>
-            <td><%= house.amount %></td>
+            <td><%= house.house.house_type %></td>
+            <td><%= house.house.category %></td>
+            <td><%= house.house.square_feet %></td>
+            <td><%= house.house.amount %></td>
             <td><%= link_to 'View Details', show_house_path(house.house_id) %></td>
           </tr>
         <% end %>

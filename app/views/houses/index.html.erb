@@ -3,7 +3,8 @@
 
 <br><br>
 <h4>Houses Posted by <%= current_user.first_name %> <%= current_user.last_name %></h4>
-
+<br>
+<b>Reserved</b>
 
 <table class="table">
   <thead class="thead-light">
@@ -19,7 +20,36 @@
   </thead>
 
   <tbody>
-    <% @house.each do |house| %>
+    <% @reserved.each do |house| %>
+      <tr>
+        <td><%= house.house_type %></td>
+        <td><%= house.category %></td>
+        <td><%= house.square_feet %></td>
+        <td><%= house.amount %></td>
+        <td><%= link_to 'View', house_path(house), class: "btn btn-outline-primary" %>
+        <td><%= link_to 'Edit', edit_house_path(house), class: "btn btn-outline-primary" %></td>
+        <td><%= link_to 'Destroy', house, method: :delete, data: { confirm: 'Are you sure?' } , class: "btn btn-outline-primary"%></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<br>
+<b> Not Reserved </b>
+<table class="table">
+  <thead class="thead-light">
+    <tr>
+      <th>House Type</th>
+      <th>Category</th>
+      <th>Square Feet</th>
+      <th>Amount</th>
+      <th>View</th>
+      <th>Edit</th>
+      <th>Destroy</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @not_reserved.each do |house| %>
       <tr>
         <td><%= house.house_type %></td>
         <td><%= house.category %></td>

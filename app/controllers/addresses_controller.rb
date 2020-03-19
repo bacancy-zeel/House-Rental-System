@@ -20,17 +20,15 @@ class AddressesController < ApplicationController
   def create
     @address = Address.new(address_params)
     @address.house_id = params[:house_id].to_i
-    @house = House.find_by(id: params[:house_id])
-    @user = @house.user
     current_user.add_role :landlord unless current_user.has_role? :landlord
     respond_to do |format|
       if @address.save
+        @house = Address.eager_load(house: :user)
+                        .find_by('houses.id=?', params[:house_id])
         flash[:success] = 'Request is sent to Admin'
-        BookingMailer.house_post(@user).deliver
+        BookingMailer.house_post(@house).deliver
         format.html { redirect_to houses_path }
-
       else
-
         format.html { render :new }
       end
     end
@@ -39,7 +37,6 @@ class AddressesController < ApplicationController
   def update
     respond_to do |format|
       if @address.update(address_params)
-
         format.html do
           redirect_to houses_url,
                       notice: 'House Profile was successfully updated.'

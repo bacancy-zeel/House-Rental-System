@@ -1,6 +1,13 @@
-Hello <%= @owner.first_name %> <%= @owner.last_name %>,
+Hello <%= @house.house.user.first_name %> <%= @house.house.user.last_name %>,
 <br>
 
-  House approved by Admin.
+  Your House is approved by Admin.
 <br><br>
+<b>House Address :</b> <%= @house.house_address %>, <%= @house.area %>
+, <%= @house.city %> = <%= @house.pincode %>.<br>
+<b>State :</b> <%= @house.state %><br>
+<b>House Type :</b> <%= @house.house.house_type %> <br>
+<b>Category :</b> <%= @house.house.category %><br>
+<b>Square Feet :</b> <%= @house.house.square_feet %><br>
+<b>Amount :</b> <%= @house.house.amount %><br>
 
