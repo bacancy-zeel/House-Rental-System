@@ -20,7 +20,6 @@ class UsersController < ApplicationController
 
   def search
     @houses = Address.where(city: params[:city])
-
     render :home, object: @houses
   end
 
