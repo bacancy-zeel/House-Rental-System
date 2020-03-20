@@ -3,9 +3,13 @@
 
   <div style = "width:400px; height:400px;display: flex; flex-direction: column;">
       
+        <% if @house.house.images.attached? %>
         <% (0...@house.house.images.count).each do |image| %>
-          <%= image_tag(@house.house.images[image], style:"width:100%") if @house.house.images.attached?%>
+          <%= image_tag(@house.house.images[image], style:"width:100%") %>
         <% end %>
+      <% else %>
+        <%= image_tag("missing.png", style:"width:100%") %>
+      <% end %>
   </div>
   <div class="info">
     <p>

@@ -19,7 +19,6 @@ Rails.application.routes.draw do
         as: :approval_update
   patch '/houses/reserve_update/:house_id' => 'houses#reserve_update',
         as: :reserve_update
-        
   # For details on the DSL available within this file, see
   # https://guides.rubyonrails.org/routing.html
 end
