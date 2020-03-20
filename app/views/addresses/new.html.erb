@@ -9,7 +9,7 @@
       </ul>
 
   <% end %>
-<%= form_with(model: @address,url: create_address_path(params[:house_id]),method: :post, local: true) do |form| %> 
+<%= form_with(model: @address,url: house_addresses_path(params[:house_id]),method: :post, local: true) do |form| %> 
 
   <div class="row">
     <div class="col-md-2">
